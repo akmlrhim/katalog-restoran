@@ -72,7 +72,7 @@ body {
   width: 100%;
   display: flex;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase
 }
 
@@ -80,17 +80,17 @@ body {
   width: 80%;
   padding: 0;
   margin: 0;
-  text-align: right
+  text-align: right;
 }
 
 .logo {
-  width: 40%;
+  width: 20%;
   padding: 0;
   margin: 0;
   text-align: left;
   box-sizing: border-box;
   display: inline-block;
-  line-height: 32px;
+  line-height: 24px
 }
 
 .nav-item-desktop {
@@ -103,15 +103,13 @@ body {
 
 .desktop-nav a {
   display: inline-block;
-  padding: 1.3em;
+  padding: 1.5em;
   text-decoration: none;
   color: white !important
 }
 
 .desktop-nav a:hover {
-  text-decoration: underline;
-  opacity: 0.5;
-  transition: 0.4s ease-in;
+  text-decoration: none;
 }
 
 .jumbotron {
@@ -209,7 +207,10 @@ main {
 }
 
 .rating-value {
-  color: red;
+  border-radius: 5px;
+  padding: 5px 10px 5px;
+  background-color: red;
+  color: white;
   text-decoration: none
 }
 

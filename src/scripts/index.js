@@ -19,7 +19,10 @@ data.restaurants.forEach((row) => {
 					<a href="#" class="rating-value">${row["rating"]}</a>
 			</p>
 			<h1 class="item-title"><a href="#">${row["name"]}</a></h1>
-			<div class="item-description">${row["description"].slice(0, 150)}...</div>
+			<article class="item-description">${row["description"].slice(
+        0,
+        200
+      )}...</article>
 	</div>
 </div>`;
 
