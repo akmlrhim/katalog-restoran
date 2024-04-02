@@ -24,7 +24,6 @@ data.restaurants.forEach((row) => {
       )}.....</article>
 	</div>
 </div>`;
-
   listData.innerHTML = listRestaurant;
 });
 
