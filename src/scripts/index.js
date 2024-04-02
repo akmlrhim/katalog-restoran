@@ -1,6 +1,5 @@
 import "regenerator-runtime"; /* for async await transpile */
 import "../styles/main.css";
-import "../styles/fontawasome/fontawesome-free-6.5.1-web/css/all.min.css";
 import data from "../public/data/DATA.json";
 
 const listData = document.querySelector("#list");
@@ -19,10 +18,10 @@ data.restaurants.forEach((row) => {
 					<a href="#" class="rating-value">${row["rating"]}</a>
 			</p>
 			<h1 class="item-title"><a href="#">${row["name"]}</a></h1>
-			<article class="item-description">${row["description"].slice(
+			<article class="item-description" id="description">${row["description"].slice(
         0,
         200
-      )}...</article>
+      )}.....</article>
 	</div>
 </div>`;
 
