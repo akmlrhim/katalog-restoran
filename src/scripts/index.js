@@ -13,9 +13,9 @@ data.restaurants.forEach((row) => {
     }" title="${row["name"]}">
 	<div class="city">Kota ${row["city"]}</div>
 	<div class="item-content">
-			<p class="item_rating">
+			<p class="item-rating">
 					Rating : 
-					<a href="#" class="rating-value">${row["rating"]}</a>
+					<a href="#" class="rating-value">${row["rating"]}/5</a>
 			</p>
 			<h1 class="item-title"><a href="#">${row["name"]}</a></h1>
 			<article class="item-description" id="description">${row["description"].slice(

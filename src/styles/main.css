@@ -131,14 +131,14 @@ body {
 .jumbotron-title {
   color: #fff;
   font-weight: 600;
-  font-size: 36px;
+  font-size: 46px;
   text-shadow: 1px 1px #141414
 }
 
 .jumbotron-description {
   color: #fff;
   margin-top: 16px;
-  font-size: 18px;
+  font-size: 36px;
   font-weight: 600;
   text-shadow: 1px 1px #141414
 }
@@ -200,25 +200,26 @@ main {
 }
 
 .item-rating {
-  font-size: 12px;
-  text-transform: uppercase;
-  color: #999;
-  font-weight: 500
+  font-size: 22px;
+  color: black;
+  font-weight: 500;
+
 }
 
 .rating-value {
-  border-radius: 5px;
-  padding: 5px 10px 5px;
-  background-color: red;
-  color: white;
-  text-decoration: none
+  color: red;
+  text-decoration: none;
+  font-size: 30px;
 }
 
 .item-title {
   font-weight: 500;
-  font-size: 16px;
-  margin-top: 10px;
+  margin-top: 22px;
   transition: 0.3s opacity
+}
+
+.item-title a {
+  font-size: 38px;
 }
 
 .read-more {
