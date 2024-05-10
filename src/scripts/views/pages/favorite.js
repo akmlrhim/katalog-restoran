@@ -7,6 +7,7 @@ const Favorite = {
     <main id="content">
         <section class="content">
         <div class="latest-list">
+        <h1 style="font-size: 42px;">Your Favorite</h1>
             <div id="list" class="list"></div>
             <h1 class="restaurant-empty"></h1>
           </div>

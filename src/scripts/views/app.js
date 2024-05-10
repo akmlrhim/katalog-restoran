@@ -1,5 +1,3 @@
-/* eslint-disable func-names */
-/* eslint-disable prefer-arrow-callback */
 import DrawerInitiator from "../utils/drawer-init";
 import UrlParser from "../routes/url-pars";
 import routes from "../routes/routes";
@@ -20,14 +18,22 @@ class App {
       content: this._content,
     });
 
-    this._button.addEventListener(
-      "click",
-      function (event) {
-        this._drawer.classList.toggle("open");
-        event.stopPropagation();
-        // eslint-disable-next-line comma-dangle
-      }.bind(this)
+    this._button.addEventListener("click", (event) => {
+      this._drawer.classList.toggle("open");
+      event.preventDefault();
+    });
+
+    const navigationButtons = this._drawer.querySelectorAll(
+      // eslint-disable-next-line comma-dangle
+      ".nav-item-mobile button"
     );
+    navigationButtons.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        const targetUrl = button.dataset.url;
+        this.navigateTo(targetUrl);
+      });
+    });
   }
 
   async renderPage() {
@@ -35,15 +41,16 @@ class App {
     const page = routes[url];
     this._content.innerHTML = await page.render();
     await page.afterRender();
-    const mainContent = document.querySelector("#content");
-    const skipLink = document.querySelector(".skip-link");
-    const hero = document.querySelector(".jumbotron");
-    skipLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      mainContent.scrollIntoView({ behavior: "smooth" });
-      skipLink.blur();
-    });
-    hero.style.display = url !== "/" ? "none" : "block";
+  }
+
+  navigateTo(url) {
+    const page = routes[url];
+    if (page) {
+      this._content.innerHTML = page.render();
+      page.afterRender();
+    } else {
+      console.error(`Page not found for URL: ${url}`);
+    }
   }
 }
 
