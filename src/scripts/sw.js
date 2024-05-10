@@ -1,39 +1,27 @@
-import { precacheAndRoute } from "workbox-precaching";
+import "regenerator-runtime";
+import CacheHelper from "./utils/cache-helper";
 
-precacheAndRoute(self.__WB_MANIFEST);
+const assetsToCache = [
+  "./",
+  "./icon/icon-192x192.png",
+  "./icon/icon-256x256.png",
+  "./icon/icon-384x384.png",
+  "./icon/icon-512x512.png",
+  "./index.html",
+  "./favicon.png",
+  "./app.bundle.js",
+  "./app.webmanifest",
+  "./sw.bundle.js",
+];
 
-self.addEventListener("install", () => {
-  console.log("Service Worker: Installed");
-  self.skipWaiting();
+self.addEventListener("install", (event) => {
+  event.waitUntil(CacheHelper.cachingAppShell([...assetsToCache]));
 });
 
-self.addEventListener("push", (event) => {
-  console.log("Service Worker: Pushed");
-
-  const dataJson = event.data.json();
-  const notification = {
-    title: dataJson.title,
-    options: {
-      body: dataJson.options.body,
-      icon: dataJson.options.icon,
-      image: dataJson.options.image,
-    },
-  };
-
-  event.waitUntil(
-    // eslint-disable-next-line comma-dangle
-    self.registration.showNotification(notification.title, notification.options)
-  );
+self.addEventListener("activate", (event) => {
+  event.waitUntil(CacheHelper.deleteOldCache());
 });
 
-self.addEventListener("notificationclick", (event) => {
-  const clickedNotification = event.notification;
-  clickedNotification.close();
-
-  const chainPromise = async () => {
-    console.log("Notification has been clicked");
-    await self.clients.openWindow("https://www.dicoding.com/");
-  };
-
-  event.waitUntil(chainPromise());
+self.addEventListener("fetch", (event) => {
+  event.respondWith(CacheHelper.revalidateCache(event.request));
 });

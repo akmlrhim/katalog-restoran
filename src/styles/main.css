@@ -7,6 +7,11 @@
   font-family: 'Plus Jakarta Sans', sans-serif
 }
 
+:root {
+  --secondary-color: black;
+  --third-color: #fff;
+}
+
 body,
 html {
   margin: 0;
@@ -175,7 +180,6 @@ main {
 .list-item {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 100%;
-  border-radius: 5px;
   overflow: hidden;
   position: relative
 }
@@ -184,7 +188,6 @@ main {
   position: absolute;
   top: 8px;
   left: 16px;
-  border-radius: 5px;
   background-color: #222831;
   padding: 5px 10px 5px;
   color: white;
@@ -270,6 +273,290 @@ footer {
   top: 100px
 }
 
+.button-detail {
+  align-items: center;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+}
+
+#root {
+  padding-top: 65px;
+}
+
+.restaurant {
+  width: 100%;
+}
+
+.restaurant-detail__wrapper h4 {
+  margin: 0;
+}
+
+.restaurant-detail__rating {
+  margin-right: 15px;
+}
+
+.restaurant-detail__category {
+  font-size: 12px;
+  padding: 5px 20px;
+  color: white;
+  background-color: var(--decoration-color);
+}
+
+.restaurant-detail__thumbnail {
+  width: 100%;
+}
+
+.restaurant-detail__info,
+.restaurant-detail__menu-list,
+.restaurant-detail__review {
+  margin-bottom: 5px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 50px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.restaurant-detail-foods>li,
+.restaurant-detail-drinks>li {
+  list-style: none;
+  margin: 10px 15px;
+  padding: 1px;
+  color: black;
+  text-align: left;
+}
+
+.foods,
+.drinks {
+  padding-top: 10px;
+}
+
+.detail {
+  display: grid;
+  grid-gap: 1.545em;
+  font-size: 1em;
+  margin-top: 1em;
+  text-align: center;
+}
+
+.detail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.detail-name-address-rating {
+  display: inline-block;
+  margin: 0;
+}
+
+.icon-primary {
+  color: black;
+}
+
+.detail-desc {
+  text-align: justify;
+  color: black;
+  margin-bottom: 0.5em;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5em;
+  font-weight: 400;
+}
+
+.category {
+  padding: 0.3em 1em;
+  color: var(--third-color);
+  background-color: black;
+  margin-right: 2px;
+  border: 1px solid transparent;
+  text-align: left;
+  height: 50px;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left: 0;
+  margin-bottom: 0;
+  margin: 20px;
+}
+
+.resto-item_image-container {
+  max-width: 600px;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-info h4 {
+  padding-top: 20px;
+  color: black;
+  font-size: 1.5em;
+  margin: 0;
+  text-align: left;
+}
+
+.detail-info li {
+  color: black;
+  position: relative;
+  display: block;
+  margin-top: 10px;
+}
+
+.resto-name {
+  font-size: 18px;
+  text-align: left;
+}
+
+.resto-address,
+.resto-rating,
+.resto-category {
+  font-size: 14px;
+  margin: 0;
+  text-align: left;
+}
+
+.explore-restaurant__label {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+}
+
+.explore-restaurant__label::after {
+  content: '';
+  margin-top: 16px;
+  display: block;
+  border-bottom: 3px solid black;
+}
+
+#explore-restaurant-list {
+  display: grid;
+  grid-row-gap: 1.5em;
+  padding-top: 1.5em;
+}
+
+.like {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  border: 0;
+
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
+
+form {
+  margin: 2em 0;
+  padding: 1.5em;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 60px;
+  padding: 0.738em;
+  font-size: 1.37em;
+  color: black;
+  background-color: var(--third-color);
+  border: 1px solid black;
+}
+
+.form-label {
+  display: block;
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+  text-align: left;
+  color: black;
+}
+
+.mb-3 {
+  margin-bottom: 1.3em;
+  margin-top: 0.5em;
+}
+
+.btn {
+  display: block;
+  width: 100px;
+  height: 50px;
+  font-size: 1.37em;
+  color: var(--third-color);
+  background-color: black;
+  border: 2px solid black;
+}
+
+
+.detail-review {
+  display: grid;
+  gap: 20px;
+  max-width: 100%;
+  font-size: 1em;
+  text-align: center;
+  margin: 20px;
+}
+
+.detail-review-item {
+  color: black;
+  background-color: white;
+  margin-bottom: 1.5em;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.header-review {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name-review {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-left: 13px;
+}
+
+.body-review {
+  padding: 1em;
+  text-align: left;
+  font-size: 1.37em;
+}
+
+.restaurant-empty {
+  margin-top: 30px;
+  text-align: center;
+}
+
 /* responsive view css  */
 @media screen and (min-width: 500px) {
   .mobile-menu {
@@ -314,7 +601,8 @@ footer {
     padding: 16px 32px 32px 32px
   }
 
-  .item-title {
+  .item-title,
+  .item-address {
     font-size: 18px
   }
 
@@ -343,4 +631,69 @@ footer {
   main {
     max-width: 1200px
   }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .restaurant-detail__info,
+  .restaurant-detail__menu-list,
+  .restaurant-detail__review {
+    margin-bottom: 5px;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+    gap: 50px;
+    margin: 0 auto;
+  }
+
+  .detail-review {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .resto-item_image-container {
+    max-width: 300px;
+  }
+}
+
+
+@media only screen and (min-width: 1200px) {
+  nav {
+    padding: 0 100px;
+  }
+
+  .list-resto {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .container-info {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-gap: 1.5em;
+    margin-top: 1em;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .header_menu {
+    display: none;
+  }
+
+  section {
+    margin-bottom: 80px;
+  }
+
+  .main-resto_label {
+    font-size: 26px;
+  }
+
+  .list-resto {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .resto-item_name {
+    font-size: 22px;
+  }
+
+
 }
