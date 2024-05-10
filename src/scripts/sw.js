@@ -1,12 +1,24 @@
 /* eslint-disable comma-dangle */
+import "regenerator-runtime";
 import { precacheAndRoute } from "workbox-precaching";
+import CacheHelper from "./utils/cache-helper";
 
-// Do precaching
-precacheAndRoute(self.__WB_MANIFEST);
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    precacheAndRoute(self.__WB_MANIFEST).then(() => {
+      console.log("Service Worker: Precaching completed");
+      self.skipWaiting();
+    })
+  );
+});
 
-self.addEventListener("install", () => {
-  console.log("Service Worker: Installed");
-  self.skipWaiting();
+self.addEventListener("activate", (event) => {
+  event.waitUntil(CacheHelper.deleteOldCache());
+  console.log("Service Worker: Activated");
+});
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(CacheHelper.revalidateCache(event.request));
 });
 
 self.addEventListener("push", (event) => {

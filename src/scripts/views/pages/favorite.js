@@ -4,6 +4,7 @@ import { restaurantList } from "../template/rest-template";
 const Favorite = {
   async render() {
     return `
+  <a href="#content" class="skip-link">To Main Content </a>
     <main id="content">
         <section class="content">
         <div class="latest-list">

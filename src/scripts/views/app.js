@@ -41,6 +41,17 @@ class App {
     const page = routes[url];
     this._content.innerHTML = await page.render();
     await page.afterRender();
+    const skipLink = document.querySelector(".skip-link");
+    const hero = document.querySelector(".jumbotron");
+    skipLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      document.querySelector("#content").focus();
+    });
+    if (url !== "/") {
+      hero.style.display = "none";
+    } else {
+      hero.style.display = "block";
+    }
   }
 
   navigateTo(url) {
