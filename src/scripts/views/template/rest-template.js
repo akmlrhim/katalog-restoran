@@ -5,7 +5,7 @@ import CONFIG from "../../globals/config";
 
 const restaurantList = (restaurant) => `
     <div class="list-item">
-        <img class="item-picture"  crossorigin="anonymous" src="${
+        <img class="lazyload item-picture"  crossorigin="anonymous" data-src="${
           CONFIG.BASE_IMAGE_URL + restaurant.pictureId
         }" alt="${restaurant.name}" title="${restaurant.name}">
         <div class="city">Kota ${restaurant.city}</div>
@@ -30,7 +30,7 @@ const restaurantDetail = (restaurant) => `
 <div class="detail">
   <div tabindex="0" class="container-info">
     <div class="img-container">
-    <img class="resto-item_image-container" crossorigin="anonymous" src="${
+    <img class="lazyload resto-item-image-container" crossorigin="anonymous" src="${
       CONFIG.BASE_IMAGE_URL + restaurant.pictureId
     }" alt="Gambar ${restaurant.name}" tabindex="0"/>
     </div>
@@ -102,14 +102,14 @@ const restaurantDetail = (restaurant) => `
 </div>
 `;
 const LikeButton = () => `
-  <button id="likeButton" class="like">
+  <button id="likeButton" aria-label="like restaurants" class="like">
   <i class="fa-regular fa-heart"></i>
 
   </button>
 `;
 
 const UnlikeButton = () => `
-  <button id="likeButton" class="like">
+  <button id="likeButton" aria-label="unlike restaurants" class="like">
     <i class="fa-solid fa-heart"></i>
   </button>
 `;
