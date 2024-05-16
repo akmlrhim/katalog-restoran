@@ -4,7 +4,7 @@ import { restaurantList } from "../template/rest-template";
 const Restaurant = {
   async render() {
     return ` 
-    <main tabindex="0" id="content" class="main-resto-box">
+    <main id="content" class="main-resto-box">
     <section class="content">
       <h2 tabindex="0" class="explore-restaurant-label">
         Find Your Restaurant Here
