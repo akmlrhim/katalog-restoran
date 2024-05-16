@@ -1,3 +1,5 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable operator-linebreak */
 /* eslint-disable prefer-destructuring */
 const path = require("path");
@@ -64,6 +66,26 @@ module.exports = {
     }),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: "./sw-workbox.bundle.js",
+      runtimeCaching: [
+        {
+          urlPattern: ({ url }) =>
+            url.href.startsWith("https://restaurant-api.dicoding.dev/"),
+          handler: "StaleWhileRevalidate",
+          options: {
+            cacheName: "renv-restaurant-api",
+          },
+        },
+        {
+          urlPattern: ({ url }) =>
+            url.href.startsWith(
+              "https://restaurant-api.dicoding.dev/images/medium/"
+            ),
+          handler: "StaleWhileRevalidate",
+          options: {
+            cacheName: "renv-restaurant-api",
+          },
+        },
+      ],
     }),
   ],
 };
