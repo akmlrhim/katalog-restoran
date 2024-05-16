@@ -27,7 +27,6 @@ const Detail = {
             <button id="submit-review" type="submit" class="btn">Submit</button>
           </form>
         </div>
-    </div>
       `;
   },
 

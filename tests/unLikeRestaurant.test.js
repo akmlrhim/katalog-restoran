@@ -10,7 +10,7 @@ const addLikeButtonContainer = () => {
   document.body.innerHTML = '<div id="likeButtonContainer"></div>';
 };
 
-describe("Unliking A Restaurant", () => {
+describe("Removing Liked Restaurants", () => {
   beforeEach(async () => {
     addLikeButtonContainer();
     await FavoriteIDB.putData({ id: 1 });
@@ -20,24 +20,24 @@ describe("Unliking A Restaurant", () => {
     await FavoriteIDB.deleteData(1);
   });
 
-  it("should display unlike widget when the restaurant has been liked", async () => {
-    await Test.createLikeButtonPresenterWithRestaurant({ id: 1 });
+  it("should display unlike button when a restaurant is already liked", async () => {
+    await Test.LikeButton({ id: 1 });
 
     expect(
       document.querySelector('[aria-label="unlike restaurants"]')
     ).toBeTruthy();
   });
 
-  it("should not display like widget when the restaurant has been liked", async () => {
-    await Test.createLikeButtonPresenterWithRestaurant({ id: 1 });
+  it("should not display like button when a restaurant is already liked", async () => {
+    await Test.LikeButton({ id: 1 });
 
     expect(
       document.querySelector('[aria-label="like restaurants"]')
     ).toBeFalsy();
   });
 
-  it("should be able to remove liked restaurant from the list", async () => {
-    await Test.createLikeButtonPresenterWithRestaurant({ id: 1 });
+  it("should be able to remove a liked restaurant from the list", async () => {
+    await Test.LikeButton({ id: 1 });
 
     document
       .querySelector('[aria-label="unlike restaurants"]')
@@ -46,8 +46,8 @@ describe("Unliking A Restaurant", () => {
     expect(await FavoriteIDB.getAllData()).toEqual([]);
   });
 
-  it("should not throw error if the unliked restaurant is not in the list", async () => {
-    await Test.createLikeButtonPresenterWithRestaurant({ id: 1 });
+  it("should not throw an error if the unliked restaurant is not in the list", async () => {
+    await Test.LikeButton({ id: 1 });
 
     await FavoriteIDB.deleteData(1);
 

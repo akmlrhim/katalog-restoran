@@ -3,19 +3,23 @@ import { restaurantList } from "../template/rest-template";
 
 const Restaurant = {
   async render() {
-    return `<section class="content" id='content'>
-      <div class="latest-list">
-        <h1 style="font-size: 42px;">Find Your Restaurant</h1>
-        <div class="list" id="list-resto"></div>
-      </div>
-    </section>`;
+    return ` 
+    <main tabindex="0" id="content" class="main-resto-box">
+    <section class="content">
+      <h2 tabindex="0" class="explore-restaurant-label">
+        Find Your Restaurant Here
+      </h2>
+      <div id="main-resto-list" class="list-resto"></div>
+    </section>
+  </main>
+  `;
   },
 
   async afterRender() {
     const restaurants = await RestaurantSource.restaurantList();
 
     if (restaurants && Array.isArray(restaurants)) {
-      const restaurantContainer = document.querySelector("#list-resto");
+      const restaurantContainer = document.querySelector(".list-resto");
 
       restaurants.forEach((restaurant) => {
         restaurantContainer.innerHTML += restaurantList(restaurant);

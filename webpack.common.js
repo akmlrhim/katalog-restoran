@@ -1,7 +1,11 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable prefer-destructuring */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
   entry: {
@@ -28,6 +32,18 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          chunks: "all",
+        },
+      },
+    },
+  },
   plugins: [
     new CleanWebpackPlugin(),
 
@@ -35,6 +51,7 @@ module.exports = {
       filename: "index.html",
       template: path.resolve(__dirname, "src/templates/index.html"),
     }),
+    new BundleAnalyzerPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {

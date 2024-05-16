@@ -4,27 +4,24 @@
 import CONFIG from "../../globals/config";
 
 const restaurantList = (restaurant) => `
-    <div class="list-item">
-        <img class="lazyload item-picture"  crossorigin="anonymous" data-src="${
-          CONFIG.BASE_IMAGE_URL + restaurant.pictureId
-        }" alt="${restaurant.name}" title="${restaurant.name}">
-        <div class="city">Kota ${restaurant.city}</div>
-        <div class="item-content">
-            <p class="item-rating">
-                Rating : 
-                <a href="#" class="rating-value">${restaurant.rating}/5</a>
-            </p>
-            <h1 class="item-title"><a href="#">${restaurant.name}</a></h1>
-            <article class="item-description" id="description">${restaurant.description.slice(
-              0,
-              200
-            )}.....
-						</article>
-						<a href="/#/detail/${
-              restaurant.id
-            }" class="button-detail">Detail Selengkapnya</a>
-        </div>
-    </div>`;
+<article tabindex="0" class="resto-item">
+  <a href="/#/detail/${restaurant.id}">
+    <img class="resto-item-image lazyload" data-src="${
+      CONFIG.BASE_IMAGE_URL + restaurant.pictureId
+    }" alt="Gambar ${restaurant.name}" tabindex="0"/>
+      <p tabindex="0" class="resto-item-city" alt="kota restoran">Kota ${
+        restaurant.city
+      }
+      </p>
+      <p tabindex="0" class="resto-item-name" alt="nama restoran">${
+        restaurant.name
+      }</p>
+      <span class="resto-item-rating" 
+      ${restaurant.rating}">Rating : ${restaurant.rating}</span>
+      <p class="resto-item-desc">${restaurant.description}</p>
+  </a>
+</article>
+`;
 
 const restaurantDetail = (restaurant) => `
 <div class="detail">

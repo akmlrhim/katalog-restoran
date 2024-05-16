@@ -3,15 +3,11 @@ import { restaurantList } from "../template/rest-template";
 
 const Favorite = {
   async render() {
-    return `
-      <a href="#content" class="skip-link">To Main Content</a>
-      <main id="content">
+    return /* html */ `
+      <main tabindex="0" id="content" class="main-resto-box">
         <section class="content">
-          <div class="latest-list">
-            <h1 style="font-size: 42px;">Your Favorite</h1>
-            <div id="list-resto" class="list"></div>
-            <h1 class="restaurant-empty"></h1>
-          </div>
+            <h2 class="restaurant-empty"></h2>
+            <div id="main-resto-list" class="list-resto"></div>
         </section>
       </main>
     `;
@@ -19,12 +15,11 @@ const Favorite = {
 
   async afterRender() {
     const restaurants = await FAVORITE_IDB.getAllData();
-    const restaurantContainer = document.getElementById("list-resto");
+    const restaurantContainer = document.getElementById("main-resto-list");
     const empty = document.querySelector(".restaurant-empty");
-
     if (restaurants.length === 0) {
       empty.innerHTML = `
-        <h2>Tidak ada favorite restaurant yang ditampilkan</h2>
+      <h3>Tidak ada favorite restaurant yang ditampilkan</h3>
       `;
     }
 
