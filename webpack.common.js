@@ -4,6 +4,8 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
+const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
@@ -32,9 +34,21 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          chunks: "all",
+        },
+      },
+    },
+  },
   plugins: [
     new CleanWebpackPlugin(),
-
+    new CaseSensitivePathsPlugin(),
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: path.resolve(__dirname, "src/templates/index.html"),
@@ -47,6 +61,9 @@ module.exports = {
           to: path.resolve(__dirname, "dist/"),
         },
       ],
+    }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      swDest: "./sw-workbox.bundle.js",
     }),
   ],
 };
