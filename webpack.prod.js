@@ -7,10 +7,16 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const path = require("path");
 
 module.exports = merge(common, {
   mode: "production",
   devtool: "source-map",
+  output: {
+    filename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true, // Automatically clean up the output folder
+  },
   module: {
     rules: [
       {
@@ -29,7 +35,12 @@ module.exports = merge(common, {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [
+          "thread-loader", // Enable parallel processing for CSS
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "cache-loader", // Enable caching for CSS
+        ],
       },
     ],
   },
@@ -44,9 +55,9 @@ module.exports = merge(common, {
       threshold: 10240,
       minRatio: 0.8,
     }),
-    new BundleAnalyzerPlugin({
-      analyzerPort: 8889, // Ubah port ke 8889 atau port lainnya yang tersedia
-    }), // Analyze bundle size and composition
+    ...(process.env.ANALYZE === "true"
+      ? [new BundleAnalyzerPlugin({ analyzerPort: 1000 })]
+      : []), // Conditionally include BundleAnalyzerPlugin
   ],
   optimization: {
     minimize: true,
@@ -59,7 +70,9 @@ module.exports = merge(common, {
           },
         },
       }),
-      new CssMinimizerPlugin(), // Minimize CSS
+      new CssMinimizerPlugin({
+        parallel: true, // Enable parallel CSS minimization
+      }),
     ],
     splitChunks: {
       chunks: "all",
@@ -67,5 +80,6 @@ module.exports = merge(common, {
   },
   cache: {
     type: "filesystem", // Enable persistent caching
+    cacheDirectory: path.resolve(__dirname, "node_modules/.cache/webpack"), // Specify cache directory
   },
 });
