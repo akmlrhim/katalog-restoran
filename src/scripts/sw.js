@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable comma-dangle */
 import 'regenerator-runtime';
 import { precacheAndRoute } from 'workbox-precaching';
@@ -48,6 +49,7 @@ self.addEventListener('notificationclick', (event) => {
 
   const chainPromise = async () => {
     console.log('Notification has been clicked');
+    // eslint-disable-next-line quotes
     await self.clients.openWindow('https://www.dicoding.com/');
   };
 
